@@ -69,7 +69,7 @@
 											</div>
 											<div class="col-12">
 												<div class="d-grid">
-													<button type="submit" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Sign in</button>
+													<a href="dashboard.php" class="btn btn-primary"><i class="bx bxs-lock-open"></i>Sign in</a>
 												</div>
 											</div>
 											<div class="col-12 text-center">
