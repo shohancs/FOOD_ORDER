@@ -1,0 +1,23 @@
+.action-btn,
+.modal-btn {
+	text-align: center;
+}
+
+.action-btn ul{
+	padding: 0;
+	margin: 0;
+}
+
+.action-btn ul li{
+	list-style: none;
+	display: inline-block;
+	margin: 0 7px;
+}
+
+.action-btn ul li .fa-pen-to-square {
+	color: green;
+}
+
+.action-btn ul li .fa-trash-can {
+	color: red;
+}
