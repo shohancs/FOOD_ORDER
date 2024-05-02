@@ -42,6 +42,24 @@
 	</script>
 	<!-- END: FOR DATATABLE -->
 
+	<!-- START: CK EDITOR -->
+	<script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor1' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+	<!-- END: CK EDITOR -->
+
+
 	<?php  
 		ob_end_flush();
 	?>

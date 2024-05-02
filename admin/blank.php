@@ -3,6 +3,14 @@
 	<div class="page-wrapper">
 		<div class="page-content">
 
+			<?php  
+				$do = isset( $_GET['do'] ) ? $_GET['do'] : "Manage";
+
+				if ( $do == "Manage" ) {
+					echo "Ok";
+				}
+			?>
+
 
 			<!-- Start Breadcrumb-->
 			<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">

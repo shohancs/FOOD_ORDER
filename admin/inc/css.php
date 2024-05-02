@@ -19,13 +19,18 @@
 	<link rel="stylesheet" href="assets/css/semi-dark.css" />
 	<link rel="stylesheet" href="assets/css/header-colors.css" />
 
-	<!-- Custom Css Link Here -->
-	<link rel="stylesheet" href="assets/css/custom.css" />
-
-
 	<!-- Datatable Css Link Here -->
 	<link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" />
 	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css" />
 
 	<!-- Font Awesome CDN link Here -->
 	<script src="https://kit.fontawesome.com/0c66e46c25.js" crossorigin="anonymous"></script>
+
+	<!-- CK EDITOR CDN LINK Here -->
+	<script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
+	<!-- Custom Css Link Here -->
+	<link rel="stylesheet" href="assets/css/custom.css" />
+
+
+	

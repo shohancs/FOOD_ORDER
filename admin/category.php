@@ -45,7 +45,6 @@
 											      <th scope="col" style="text-align: center;">Category Image</th>
 											      <th scope="col" style="text-align: center;">Category Name</th>
 											      <th scope="col" style="text-align: center;">Price (Taka)</th>
-											      <th scope="col" style="text-align: center;">Quantity</th>
 											      <th scope="col" style="text-align: center;">Parent/Child Category</th>
 											      <th scope="col" style="text-align: center;">Rating</th>
 											      <th scope="col" style="text-align: center;">Join Date</th>
@@ -76,7 +75,6 @@
 												  			$long_desc  	= $row['long_desc'];
 												  			$is_parent  	= $row['is_parent'];
 												  			$img_one  		= $row['img_one'];
-												  			$quantity  		= $row['quantity'];
 												  			$price  		= $row['price'];
 												  			$rate  			= $row['rate'];
 												  			$status  		= $row['status'];
@@ -97,17 +95,6 @@
 															      </td>
 															      <td style="text-align: center;"><?php echo $cat_name; ?></td>
 															      <td style="text-align: center;"><?php echo $price; ?> Taka</td>
-															      <td style="text-align: center;">
-															      	<?php  
-															      		if ( $quantity != 0 ) { ?>
-															      			<span class="badge text-bg-warning"><?php echo $quantity; ?> Pcs</span>
-															      		<?php }
-
-															      		else { ?>
-															      			<span class="badge text-bg-danger">NULL</span>
-															      		<?php }
-															      	?>
-															      </td>
 															      <td style="text-align: center;">
 															      	<?php  
 
@@ -207,13 +194,104 @@
 					<div class="row row-cols-12 row-cols-lg-12 row-cols-xl-12">
 						<div class="col">
 							<div class="card radius-15">
-								<div class="card-body text-center">
+								<div class="card-body">
 									<div class="p-4 border radius-15">
 
 										<!-- ### START: MAIN BODY CONTENT  ### -->
 
 										<!-- START: FORM -->
-										<form action="category.php?do=Store" method="POST"></form>
+										<form action="category.php?do=Store" method="POST" enctype="multipart/form-data">
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="mb-3">
+														<label for="">Category Name</label>
+														<input type="text" name="cat_name" class="form-control" required autocomplete="off" placeholder="enter category name">
+													</div>
+
+													<div class="mb-3">
+														<label for="">Price (Taka)</label>
+														<input type="text" name="price" class="form-control" required autocomplete="off" placeholder="enter price amount">
+													</div>
+
+													<div class="mb-3">
+														<label for="">Select the Parent Category [ If Any ]</label>
+														<select class="form-select" name="is_parent">
+														  <option value="1">Please select the parent category</option>
+														  <?php  
+														  	$sql = "SELECT * FROM category WHERE is_parent = 1 AND status = 1 ORDER BY cat_name ASC";
+														  	$query = mysqli_query( $db, $sql );
+
+														  	while ( $row = mysqli_fetch_assoc( $query ) ) {
+														  		$cat_id		= $row['cat_id'];
+														  		$cat_name 	= $row['cat_name']; 
+														  		?>
+														  		<option value="<?php echo $cat_id; ?>"><?php echo $cat_name; ?></option>
+														  		<?php
+														  	}
+
+														  ?>
+														</select>
+													</div>													
+
+													<div class="mb-3">
+														<label for="">Short Description</label>
+														<textarea name="short_desc" class="form-control" cols="30" rows="3" placeholder="enter short description.." id="editor"></textarea>
+													</div>
+
+													<div class="mb-3">
+														<label for="">Long Description</label>
+														<textarea name="long_desc" class="form-control" cols="30" rows="10" placeholder="enter long description.." id="editor1"></textarea>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													
+													<div class="row">
+														<div class="col-lg-6">
+															<div class="mb-3">
+																<label for="">Category Image <sup style="font-size: 8px; color: #DD5353; top: -9px;"><small><i class="fa-solid fa-star"></i></small></sup></label>
+																<input class="form-control" name="catImg_one" type="file" id="formFile">
+															</div>
+														</div>
+
+														<div class="col-lg-6">
+															<div class="mb-3">
+																<label for="">Category Image <sup>(optional)</sup></label>
+																<input class="form-control" name="catImg_two" type="file" id="formFile">
+															</div>
+														</div>
+
+														<div class="col-lg-6">
+															<div class="mb-3">
+																<label for="">Category Image <sup>(optional)</sup></label>
+																<input class="form-control" name="catImg_three" type="file" id="formFile">
+															</div>
+														</div>
+
+														<div class="col-lg-6">
+															<div class="mb-3">
+																<label for="">Category Image <sup>(optional)</sup></label>
+																<input class="form-control" name="catImg_four" type="file" id="formFile">
+															</div>
+														</div>
+													</div>
+
+													<div class="mb-3">
+														<label for="">Status</label>
+														<select class="form-select" name="status">
+														  <option value="1">Please select the status</option>
+														  <option value="1">Active</option>
+														  <option value="0">InActive</option>
+														</select>
+													</div>
+
+													<div class="mb-3">
+														<div class="d-grid gap-2">
+															<input type="submit" name="cat_add" class="btn btn-primary" value="Add New Category">
+														</div>
+													</div>
+												</div>
+											</div>											
+										</form>
 										<!-- END: FORM -->
 
 										<!-- ### END: MAIN BODY CONTENT  ### -->
@@ -226,7 +304,37 @@
 				<?php }
 
 				else if ( $do == "Store" ) {
-					echo "Store";
+					if ( isset($_POST['cat_add']) ) {
+						$cat_name 		= $_POST['cat_name'];
+						$price 			= $_POST['price'];
+						$is_parent 		= $_POST['is_parent'];
+						$short_desc 	= $_POST['short_desc'];
+						$long_desc 		= $_POST['long_desc'];
+						
+						$catImg_two 	= $_POST['catImg_two'];
+						$catImg_three 	= $_POST['catImg_three'];
+						$catImg_four 	= $_POST['catImg_four'];
+						$status 		= $_POST['status'];
+
+						$catImg_one 	= $_FILES['catImg_one']['name'];
+						$temp_img 		= $_FILES['image']['tem_name'];
+
+						if (!empty($catImg_one)) {
+							$img = rand(0, 999999) . "_" . $catImg_one;
+							move_uploaded_file($temp_img, 'assets/images/category/' . $img);
+						}
+						
+
+						$addCatSql = "INSERT INTO category ( cat_name , short_desc, long_desc, is_parent, img_one, img_two, img_three, img_four, price, status, join_date ) VALUES ( '$cat_name', '$short_desc', '$long_desc', '$is_parent', '$img', '$imgTwo', '$imgThree', '$imgFour', '$price', '$status', now() )";
+						$addCatQuery = mysqli_query( $db, $addCatSql );
+
+						if ( $addCatSql ) {
+							header( "Location:category.php?do=Manage" );
+						}
+						else {
+							die("Mysqli Error" . mysqli_error($db));
+						}
+					}
 				}
 
 				else if ( $do == "Edit" ) {

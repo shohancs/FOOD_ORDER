@@ -39,6 +39,38 @@
 					</ul>
 				</li>
 
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class='bx bx-category'></i>
+						</div>
+						<div class="menu-title">Cuisine</div>
+					</a>
+					<ul>
+						<li> <a href="cuisine.php?do=Manage"><i class="bx bx-radio-circle"></i>Manage All Cuisine</a>
+						</li>
+						<li> <a href="cuisine.php?do=Add"><i class="bx bx-radio-circle"></i>Add New Cuisine</a>
+						</li>
+						<li> <a href="cuisine.php?do=ManageTrash"><i class="bx bx-radio-circle"></i>Trash</a>
+						</li>
+					</ul>
+				</li>
+
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class='bx bx-category'></i>
+						</div>
+						<div class="menu-title">Restaurants</div>
+					</a>
+					<ul>
+						<li> <a href="restaurant.php?do=Manage"><i class="bx bx-radio-circle"></i>Manage All Restaurants</a>
+						</li>
+						<li> <a href="restaurant.php?do=Add"><i class="bx bx-radio-circle"></i>Add New Restaurant</a>
+						</li>
+						<li> <a href="restaurant.php?do=ManageTrash"><i class="bx bx-radio-circle"></i>Trash</a>
+						</li>
+					</ul>
+				</li>
+
 
 				<li class="menu-label">Others</li>
 				<li>
